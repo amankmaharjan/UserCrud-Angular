@@ -1,0 +1,28 @@
+<form>
+  First name:<br>
+  <input type="text" name="firstname" [(ngModel)]="user.name">
+  <br>
+  <button (click)="createUser()">add</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>options</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let user of userList">
+  <tr>
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>
+      <button (click)="goDetail(user)">select</button>
+      <button (click)="deleteUser(user); $event.stopPropagation()">delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<user-detail [user]="selectedUser" [userList]="userList"  (onUpdate)="updateUser(selectedUser)"></user-detail>
